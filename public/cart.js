@@ -2,6 +2,9 @@ window.addEventListener('load', () => {
     showWhatsInCart();
 });
 
+//Connect to stripe with publishable key??
+let stripe = Stripe('pk_test_51Jc8njIyEKoWmrdFxr80HrBTOYFNs9uo8qNCRz6slhLv5CY6zGH622D2i1CXVU5WtCzapgHCXI4v96i9t6iJdp7j00UgqRplu5');
+
 let buyButton = document.getElementById('buyBtn');
 buyButton.addEventListener('click', youAreNowBroke);
 
@@ -80,6 +83,7 @@ async function youAreNowBroke() {
     })
     .then((session) => {
         console.log(session)
+        return stripe.redirectToCheckout({sessionId: session.id});
     })
     .catch((err) => console.error(err));
 }
