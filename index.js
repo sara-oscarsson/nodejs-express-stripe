@@ -27,7 +27,7 @@ app.post('/payment', async (req, res) => {
                 product_data: {
                     name: boughtCar.car.model
                 },
-                unit_amount: boughtCar.car.price * 1,
+                unit_amount: boughtCar.car.price * 100,
             },
             quantity: boughtCar.quantity
         }
@@ -41,8 +41,8 @@ app.post('/payment', async (req, res) => {
         success_url: `http://localhost:3000/success.html`,
         cancel_url: 'https://localhost:3000/cancel.html',
       });
-      console.log(session.id)
-     res.status(200).json({ id: session.id })
+      console.log(session.id);
+     res.status(200).json({ id: session.id });
 });
 
 app.listen(3000);

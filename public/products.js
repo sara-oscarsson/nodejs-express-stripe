@@ -1,7 +1,7 @@
 let products = [
   {
     id: 1,
-    price: 30000000,
+    price: 30000,
     model: "Jesko",
     description:
       "Jesko – the all-new megacar from Koenigsegg – is powered by a newly designed, 1280hp (1600hp on E85 in some markets), twin-turbocharged V8 engine that benefits from significant changes to the Agera engine it replaces.",
@@ -11,7 +11,7 @@ let products = [
   },
   {
     id: 2,
-    price: 1250000,
+    price: 12500,
     model: "AMG GLE Coupé",
     description:
       "A sporty and elegant coupé-design, excellent for terrain and dynamics typical to AMG: This is what makes the all new Mercedes-AMG GLE Coupé just that special.",
