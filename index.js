@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const app = express();
 const fs = require('fs');
@@ -44,5 +45,14 @@ app.post('/payment', async (req, res) => {
       console.log(session.id);
      res.status(200).json({ id: session.id });
 });
+
+app.post("/verify", async (req, res) => {
+    const sessionID = req.body.sessionID
+    const paymentInfo = await stripe.checkout.sessions.retrieve(sessionID);
+
+    if(paymentInfo.payment_status === "paid") {
+        console.log("betalat")
+    }
+})
 
 app.listen(3000);

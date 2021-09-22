@@ -83,6 +83,7 @@ async function youAreNowBroke() {
     })
     .then((session) => {
         console.log(session)
+        localStorage.setItem("sessionID", session.id)
         return stripe.redirectToCheckout({sessionId: session.id});
     })
     .catch((err) => console.error(err));
