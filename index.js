@@ -26,13 +26,13 @@ app.use(
   })
 );
 
-app.get('/checkUser', (req, res) => {
-  if(req.session.id){
+app.get("/checkUser", (req, res) => {
+  if (req.session.id) {
     res.json(req.session.username);
   } else {
-    res.json(false)
+    res.json(false);
   }
-})
+});
 
 app.post("/createUser", async (req, res) => {
   let unparsedUserList = fs.readFileSync("users.json");
@@ -44,10 +44,10 @@ app.post("/createUser", async (req, res) => {
     //Don't run code if userExist is true
     return res.json("User already exists");
   }
-  
+
   //Create a stripe customer
   const customer = await stripe.customers.create({
-    name: req.body.name
+    name: req.body.name,
   });
 
   const hashedPwd = await bcrypt.hash(req.body.pwd, 10);
@@ -56,11 +56,11 @@ app.post("/createUser", async (req, res) => {
   let newUser = {
     username: req.body.name,
     password: hashedPwd,
-    customerID: customer.id
+    customerID: customer.id,
   };
   userList.push(newUser);
   fs.writeFileSync("users.json", JSON.stringify(userList));
-  res.json('You successfully created an account!');
+  res.json("You successfully created an account!");
 });
 
 app.post("/login", async (req, res) => {
@@ -69,9 +69,9 @@ app.post("/login", async (req, res) => {
   let userExist = userList.find((user) => {
     return user.username === req.body.name;
   });
-  if (!userExist || !await bcrypt.compare(req.body.pwd, userExist.password)) {
+  if (!userExist || !(await bcrypt.compare(req.body.pwd, userExist.password))) {
     //Don't run code if userExist is true
-    res.json({login: false});
+    res.json({ login: false });
     return;
   }
 
@@ -83,14 +83,14 @@ app.post("/login", async (req, res) => {
   req.session.id = uuid.v4();
   req.session.username = req.body.name;
   req.session.loginDate = new Date().toLocaleString();
-  req.session.customerID = userExist.customerID
-  res.json({login: true, name: req.body.name});
+  req.session.customerID = userExist.customerID;
+  res.json({ login: true, name: req.body.name });
 });
 
-app.delete('/logout', (req, res) => {
+app.delete("/logout", (req, res) => {
   req.session = null;
-  res.json('You are now logged out!');
-})
+  res.json("You are now logged out!");
+});
 
 app.post("/payment", async (req, res) => {
   //Save body in variable
@@ -130,6 +130,17 @@ app.post("/payment", async (req, res) => {
   res.status(200).json({ id: session.id });
 });
 
+app.get("/orders", async (req, res) => {
+  if (!req.session.id) {
+    return res.json(false);
+  }
+  let userID = req.session.customerID;
+  let unParsedOrderlist = fs.readFileSync("verification.json");
+  let orderList = JSON.parse(unParsedOrderlist);
+  const result = orderList.filter((order) => order.customerID === userID);
+  res.json(result)
+});
+
 app.post("/verify", async (req, res) => {
   //Session id is sent in req.body
   const sessionID = req.body.sessionID;
@@ -144,7 +155,7 @@ app.post("/verify", async (req, res) => {
       orderId: paymentInfo.id,
       totalPrice: paymentInfo.amount_total,
       orderdProducts: paymentInfo.metadata,
-      customerID: paymentInfo.customer
+      customerID: paymentInfo.customer,
     };
     //Get list of verified orders and parse it
     let unParsedOrderlist = fs.readFileSync("verification.json");
