@@ -1,6 +1,46 @@
 window.addEventListener("load", () => {
   renderProducts(products);
+  checkLogin();
 });
+let loginBtn = document.getElementById('loginBtn');
+let logoutBtn = document.getElementById('logoutBtn');
+logoutBtn.addEventListener('click', async () => {
+  localStorage.removeItem('login');
+  loginBtn.style.display = 'block';
+  logoutBtn.style.display = 'none';
+  let response = await fetch("/logout", {
+    headers: { "Content-Type": "application/json" },
+    method: "DELETE"
+  })
+    .then((result) => {
+      return result.json();
+    })
+    .then((answer) => {
+      console.log(answer);
+    })
+    .catch((err) => console.error(err));
+
+})
+
+async function checkLogin() {
+  let response = await fetch("/checkUser", {
+    headers: { "Content-Type": "application/json" },
+    method: "GET"
+  })
+    .then((result) => {
+      return result.json();
+    })
+    .then((answer) => {
+      if(answer) {
+        localStorage.setItem('login', JSON.stringify(answer));
+        loginBtn.style.display = 'none';
+      } else {
+        localStorage.removeItem('login');
+        logoutBtn.style.display = 'none';
+      }
+    })
+    .catch((err) => console.error(err));
+}
 
 function renderProducts(products) {
   let displayDiv = document.getElementById("displayProducts");

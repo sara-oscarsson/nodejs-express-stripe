@@ -1,14 +1,31 @@
 window.addEventListener("load", () => {
   showWhatsInCart();
+  checkLogin();
 });
+let buyButton = document.getElementById("buyBtn");
+buyButton.addEventListener("click", youAreNowBroke);
+
+async function checkLogin() {
+  let response = await fetch("/checkUser", {
+    headers: { "Content-Type": "application/json" },
+    method: "GET"
+  })
+    .then((result) => {
+      return result.json();
+    })
+    .then((answer) => {
+      if(!answer) {
+        buyButton.disabled = true;
+      } 
+    })
+    .catch((err) => console.error(err));
+}
 
 //Connect to stripe with publishable key??
 let stripe = Stripe(
   "pk_test_51Jc8njIyEKoWmrdFxr80HrBTOYFNs9uo8qNCRz6slhLv5CY6zGH622D2i1CXVU5WtCzapgHCXI4v96i9t6iJdp7j00UgqRplu5"
 );
 
-let buyButton = document.getElementById("buyBtn");
-buyButton.addEventListener("click", youAreNowBroke);
 
 function showWhatsInCart() {
   let currentCart = localStorage.getItem("cart");

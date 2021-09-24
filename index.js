@@ -19,26 +19,36 @@ app.use(express.json());
 app.use(
   cookie({
     secret: "kldnvkfdnsvdkfnsv!1",
-    maxAge: 1000 * 10,
+    maxAge: 1000 * 60,
     sameSite: "strict",
     httpOnly: true,
     secure: false,
   })
 );
 
+app.get('/checkUser', (req, res) => {
+  if(req.session.id){
+    res.json(req.session.username);
+  } else {
+    res.json(false)
+  }
+})
+
 app.post("/createUser", async (req, res) => {
   let unparsedUserList = fs.readFileSync("users.json");
   let userList = JSON.parse(unparsedUserList);
   let userExist = userList.find((user) => {
-    return user.name === req.body.name;
+    return user.username === req.body.name;
   });
   if (userExist) {
     //Don't run code if userExist is true
-    res.json("User already exists");
-    return;
+    return res.json("User already exists");
   }
-
-  /* Connect to stripe here 🤠 */
+  
+  //Create a stripe customer
+  const customer = await stripe.customers.create({
+    name: req.body.name
+  });
 
   const hashedPwd = await bcrypt.hash(req.body.pwd, 10);
 
@@ -46,22 +56,22 @@ app.post("/createUser", async (req, res) => {
   let newUser = {
     username: req.body.name,
     password: hashedPwd,
+    customerID: customer.id
   };
   userList.push(newUser);
   fs.writeFileSync("users.json", JSON.stringify(userList));
-  res.json("User was successfully created");
+  res.json('You successfully created an account!');
 });
 
 app.post("/login", async (req, res) => {
   let unparsedUserList = fs.readFileSync("users.json");
   let userList = JSON.parse(unparsedUserList);
-  console.log(userList);
   let userExist = userList.find((user) => {
     return user.username === req.body.name;
   });
   if (!userExist || !await bcrypt.compare(req.body.pwd, userExist.password)) {
     //Don't run code if userExist is true
-    res.json("Username or password is wrong");
+    res.json({login: false});
     return;
   }
 
@@ -69,11 +79,18 @@ app.post("/login", async (req, res) => {
     return res.json("You are already logged in");
   }
 
+  //Create cookie-session
   req.session.id = uuid.v4();
   req.session.username = req.body.name;
   req.session.loginDate = new Date().toLocaleString();
-  res.json("Successfully logged in!");
+  req.session.customerID = userExist.customerID
+  res.json({login: true, name: req.body.name});
 });
+
+app.delete('/logout', (req, res) => {
+  req.session = null;
+  res.json('You are now logged out!');
+})
 
 app.post("/payment", async (req, res) => {
   //Save body in variable
@@ -103,6 +120,7 @@ app.post("/payment", async (req, res) => {
     payment_method_types: ["card"],
     line_items: carsToStripe,
     mode: "payment",
+    customer: req.session.customerID,
     metadata: {
       date: orderDate,
     },
@@ -126,6 +144,7 @@ app.post("/verify", async (req, res) => {
       orderId: paymentInfo.id,
       totalPrice: paymentInfo.amount_total,
       orderdProducts: paymentInfo.metadata,
+      customerID: paymentInfo.customer
     };
     //Get list of verified orders and parse it
     let unParsedOrderlist = fs.readFileSync("verification.json");
