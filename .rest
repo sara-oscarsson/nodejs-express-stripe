@@ -12,6 +12,11 @@ POST http://localhost:3000/login/
 Content-Type: application/json
 
 {
-    "name": "test",
-    "pwd": "okej"
+    "name": "123",
+    "pwd": "123"
 }
+
+###
+
+GET http://localhost:3000/orders/
+Content-Type: application/json
