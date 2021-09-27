@@ -7,9 +7,27 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://js.stripe.com/v3/"></script>
     <script src="./JS/cart.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
     <title>Cart</title>
   </head>
   <body>
+    <header id="header">
+      <div class="leftHeader">
+        <a href="index.html">
+          <h1>ULTRACARS</h1>
+        </a>
+      </div>
+      <div class="rightHeader">
+        <a class="link" id="loginBtn" href="login.html">
+          <span data-content="LOGIN">
+            LOGIN
+          </span>
+        </a>
+      </div>
+    </header>
     <h1>cart</h1>
     <div id="productsFromCart"></div>
     <div id="totalPrice"></div>

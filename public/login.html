@@ -5,20 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./JS/login.js" defer></script>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
     <title>Login</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Registration</h1>
-      <input type="text" id="username" placeholder="Enter username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button id="send">Create account</button>
-    </div>
-    <div class="container">
-      <h1>Login</h1>
-      <input type="text" id="loginUsername" placeholder="Enter username" />
-      <input type="password" id="loginPassword" placeholder="Password" />
-      <button id="loginButton">Log in</button>
+    <body>
+      <header id="header">
+        <div class="leftHeader">
+          <a href="index.html">
+            <h1>ULTRACARS</h1>
+          </a>
+        </div>
+        <div class="rightHeader">
+          <a class="link" href="cart.html">
+            <span data-content="CART">
+              CART
+            </span>
+          </a>
+        </div>
+      </header>
+    <div class="containerWrapper">
+      <div class="containerRegister">
+        <h1>Registration</h1>
+        <input type="text" id="username" placeholder="Enter username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button class="formButton"  id="send">Create account</button>
+        <button class="changeBtn" onclick="changeForm()">Login</button>
+      </div>
+      <div class="containerLogin">
+        <h1>Login</h1>
+        <input type="text" id="loginUsername" placeholder="Username" />
+        <input type="password" id="loginPassword" placeholder="Password" />
+        <button class="formButton" id="loginButton">Log in</button>
+        <button class="changeBtn" onclick="changeForm()">Register</button>
+      </div>
     </div>
   </body>
 </html>

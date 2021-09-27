@@ -1,5 +1,9 @@
+let loginForm = document.querySelector('.containerLogin');
+let registerForm = document.querySelector('.containerRegister');
 const send = document.getElementById("send");
 send.addEventListener("click", createAccount);
+
+let showLogin = true;
 
 const loginButton = document.getElementById('loginButton');
 loginButton.addEventListener('click', loginFunction);
@@ -54,14 +58,32 @@ async function createAccount() {
     method: "POST",
     body: JSON.stringify(newUser),
   })
-    .then((result) => {
-      return result.json();
-    })
-    .then((answer) => {
-        alert(answer);
-        username.value = '';
-        password.value = '';
-      
+  .then((result) => {
+    return result.json();
+  })
+  .then((answer) => {
+    alert(answer);
+    username.value = '';
+    password.value = '';
+    loginForm.style.display = 'flex';
+    registerForm.style.display = 'none';
+    showLogin = true;
+
     })
     .catch((err) => console.error(err));
+}
+
+function changeForm() {
+
+  if(showLogin) {
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'flex';
+    showLogin = false;
+    
+  } else {
+    loginForm.style.display = 'flex';
+    registerForm.style.display = 'none';
+    showLogin = true;
+    
+  }
 }
