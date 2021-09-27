@@ -2,6 +2,19 @@ window.addEventListener("load", () => {
   renderProducts(products);
   checkLogin();
 });
+
+window.addEventListener('scroll', headerFunction);
+
+function headerFunction() {
+  let header = document.getElementById('header');
+  let y = window.scrollY;
+  if(y > 20) {
+    header.classList.add('color');
+  } else {
+    header.classList.remove('color');
+  }
+}
+
 let loginBtn = document.getElementById("loginBtn");
 let logoutBtn = document.getElementById("logoutBtn");
 let orderPage = document.getElementById("orderPage");
@@ -51,6 +64,7 @@ function renderProducts(products) {
   let displayDiv = document.getElementById("displayProducts");
   products.forEach((product) => {
     let card = document.createElement("div");
+    card.style.marginTop= '80px';
     card.classList.add("productCard");
 
     let model = document.createElement("h2");

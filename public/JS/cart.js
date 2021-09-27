@@ -2,6 +2,7 @@ window.addEventListener("load", () => {
   showWhatsInCart();
   checkLogin();
 });
+let loginBtn = document.getElementById("loginBtn");
 let buyButton = document.getElementById("buyBtn");
 buyButton.addEventListener("click", youAreNowBroke);
 
@@ -16,7 +17,9 @@ async function checkLogin() {
     .then((answer) => {
       if(!answer) {
         buyButton.disabled = true;
-      } 
+      } else {
+        loginBtn.style.display = "none";
+      }
     })
     .catch((err) => console.error(err));
 }
