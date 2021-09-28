@@ -1,0 +1,51 @@
+body {
+    text-align: center;
+}
+
+#listedOrders {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.receipt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    margin: 10px;
+    border: 1px solid black;
+    width: 50%;
+    flex-wrap: wrap;
+    height: auto;
+    text-align: center;
+    white-space: normal;
+}
+
+.textHolder {
+    width: 100%;
+    height: auto;
+    display: table-cell;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+.titleOrders {
+    margin-top: 100px;
+}
+
+.successWrapper {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.successWrapper h2 {
+    margin: 30px;
+}
