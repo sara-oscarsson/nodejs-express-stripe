@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://js.stripe.com/v3/"></script>
     <script src="./JS/cart.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap"
+      rel="stylesheet"
+    />
     <title>Cart</title>
   </head>
   <body>
@@ -22,15 +25,14 @@
       </div>
       <div class="rightHeader">
         <a class="link" id="loginBtn" href="login.html">
-          <span data-content="LOGIN">
-            LOGIN
-          </span>
+          <span data-content="LOGIN"> LOGIN </span>
         </a>
       </div>
     </header>
-    <h1>cart</h1>
-    <div id="productsFromCart"></div>
-    <div id="totalPrice"></div>
-    <button id="buyBtn">Buy</button>
+    <div class="cartWrapper">
+      <div id="productsFromCart"></div>
+      <div id="totalPrice"></div>
+        <button id="buyBtn">Buy</button>
+    </div>
   </body>
 </html>

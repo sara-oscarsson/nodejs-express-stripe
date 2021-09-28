@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Aldrich", sans-serif;
 }
 /* header */
 header {
@@ -20,7 +21,6 @@ header {
 
 .color {
   background-color: rgba(0, 0, 0, 0.815);
-  
 }
 
 .leftHeader {
@@ -30,7 +30,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-family: 'Aldrich', sans-serif;
+  font-family: "Aldrich", sans-serif;
 }
 
 .leftHeader a {
@@ -51,11 +51,11 @@ header {
   margin: 10px;
   text-decoration: none;
   color: white;
-  font-family: 'Aldrich', sans-serif;
+  font-family: "Aldrich", sans-serif;
   font-size: 12px;
 }
 .rightHeader button {
-  font-family: 'Aldrich', sans-serif;
+  font-family: "Aldrich", sans-serif;
   margin: 10px;
   color: white;
   border: none;
@@ -76,9 +76,10 @@ header {
   transition: clip-path 275ms ease;
   transition: clip-path 275ms ease, -webkit-clip-path 275ms ease;
 }
-.link:hover span::before, .link:focus span::before {
+.link:hover span::before,
+.link:focus span::before {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 .link span {
   position: relative;
@@ -91,9 +92,9 @@ header {
   color: white;
   text-decoration: underline;
   -webkit-text-decoration-color: white;
-          text-decoration-color: white;
+  text-decoration-color: white;
   -webkit-clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
   transition: -webkit-clip-path 275ms ease;
   transition: clip-path 275ms ease;
   transition: clip-path 275ms ease, -webkit-clip-path 275ms ease;
@@ -101,25 +102,96 @@ header {
 
 span.dotted::before {
   -webkit-text-decoration-style: dotted;
-          text-decoration-style: dotted;
+  text-decoration-style: dotted;
 }
 
 span.dashed::before {
   -webkit-text-decoration-style: dashed;
-          text-decoration-style: dashed;
+  text-decoration-style: dashed;
 }
 
 span.double::before {
   -webkit-text-decoration-style: double;
-          text-decoration-style: double;
+  text-decoration-style: double;
 }
 
 span.wavy::before {
   -webkit-text-decoration-style: wavy;
-          text-decoration-style: wavy;
+  text-decoration-style: wavy;
 }
 
 span.line-through::before {
   -webkit-text-decoration-line: line-through;
-          text-decoration-line: line-through;
+  text-decoration-line: line-through;
+}
+
+#productsFromCart {
+  margin-top: 100px;
+}
+
+button#buyBtn,
+.productCard button {
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  width: 90px;
+}
+
+button#buyBtn,
+.productCard button {
+  padding: 10px 25px;
+  font-weight: 500;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  display: inline-block;
+}
+
+#buyBtn,
+.productCard button {
+  border: 2px solid rgb(0, 0, 0);
+  z-index: 1;
+  color: rgb(0, 0, 0);
+  width: 200px;
+}
+
+#buyBtn:after,
+.productCard button:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: rgb(0, 0, 0);
+  transition: all 0.3s ease;
+}
+
+#buyBtn:hover,
+.productCard button:hover {
+  color: rgb(255, 255, 255);
+}
+
+#buyBtn:hover:after,
+.productCard button:hover:after {
+  top: 0;
+  height: 100%;
+}
+
+#buyBtn:active,
+.productCard button:active {
+  top: 2px;
+}
+
+.cartWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
 }

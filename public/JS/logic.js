@@ -67,12 +67,12 @@ function renderProducts(products) {
     card.style.marginTop= '80px';
     card.classList.add("productCard");
 
-    let model = document.createElement("h2");
-    model.innerText = product.model;
-
     let productImage = document.createElement("img");
     productImage.src = product.image;
 
+    let model = document.createElement("h2");
+    model.innerText = product.model;
+  
     let productDescription = document.createElement("h3");
     productDescription.innerText = product.description;
 

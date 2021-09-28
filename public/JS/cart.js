@@ -17,6 +17,8 @@ async function checkLogin() {
     .then((answer) => {
       if(!answer) {
         buyButton.disabled = true;
+        buyButton.innerText = "Login to buy"
+        buyButton.style.width = "200px";
       } else {
         loginBtn.style.display = "none";
       }
