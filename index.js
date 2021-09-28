@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(
   cookie({
     secret: "kldnvkfdnsvdkfnsv!1",
-    maxAge: 1000 * 60,
+    maxAge: 1000 * 60 * 60,
     sameSite: "strict",
     httpOnly: true,
     secure: false,
