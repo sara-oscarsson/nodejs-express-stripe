@@ -17,6 +17,7 @@ header {
   justify-content: space-between;
   margin-bottom: 20px;
   padding: 5px;
+  z-index: 2;
 }
 
 .color {
@@ -64,11 +65,6 @@ header {
   cursor: pointer;
   font-size: 12px;
 }
-
-/* .rightHeader a:hover {
-  text-shadow: powderblue;
-}
- */
 
 .link {
   position: relative;
@@ -194,4 +190,95 @@ button#buyBtn,
   justify-content: center;
   align-items: center;
   height: auto;
+}
+
+#displayProducts {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+#displayProducts .productCard {
+  position: relative;
+  border-radius: 10px;
+}
+
+#displayProducts .productCard img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.7s;
+  z-index: 1;
+
+}
+
+#displayProducts .productCard .face {
+  width: 750px;
+  height: 450px;
+  transition: 0.5s;
+}
+
+#displayProducts .productCard .face.imageWrapper {
+  position: relative;
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transform: translateY(350px);
+}
+
+#displayProducts .productCard:hover .face.imageWrapper {
+  transform: translateY(0px);
+}
+
+#displayProducts .productCard .face.imageWrapper .content {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#displayProducts .productCard:hover .face.imageWrapper .content {
+  opacity: 1;
+}
+
+#displayProducts .productCard .face.infoWrapper {
+  position: relative;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  transform: translateY(-100px);
+}
+
+#displayProducts .productCard:hover .face.infoWrapper {
+  transform: translateY(0);
+}
+
+#displayProducts .productCard .face.infoWrapper .content p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #414141;
+}
+
+#displayProducts .productCard .face.infoWrapper .content h3 {
+  margin: 0 0 10px 0;
+  padding: 0;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  color: #414141;
+}
+
+#displayProducts a {
+  text-decoration: none;
+  color: #414141;
 }

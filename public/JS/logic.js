@@ -3,15 +3,15 @@ window.addEventListener("load", () => {
   checkLogin();
 });
 
-window.addEventListener('scroll', headerFunction);
+window.addEventListener("scroll", headerFunction);
 
 function headerFunction() {
-  let header = document.getElementById('header');
+  let header = document.getElementById("header");
   let y = window.scrollY;
-  if(y > 20) {
-    header.classList.add('color');
+  if (y > 20) {
+    header.classList.add("color");
   } else {
-    header.classList.remove('color');
+    header.classList.remove("color");
   }
 }
 
@@ -20,12 +20,11 @@ let logoutBtn = document.getElementById("logoutBtn");
 let orderPage = document.getElementById("orderPage");
 
 logoutBtn.addEventListener("click", async () => {
-
   localStorage.removeItem("login");
   loginBtn.style.display = "block";
   logoutBtn.style.display = "none";
-  orderPage.style.display= "none";
-  
+  orderPage.style.display = "none";
+
   let response = await fetch("/logout", {
     headers: { "Content-Type": "application/json" },
     method: "DELETE",
@@ -54,7 +53,7 @@ async function checkLogin() {
       } else {
         localStorage.removeItem("login");
         logoutBtn.style.display = "none";
-        orderPage.style.display= "none";
+        orderPage.style.display = "none";
       }
     })
     .catch((err) => console.error(err));
@@ -64,16 +63,30 @@ function renderProducts(products) {
   let displayDiv = document.getElementById("displayProducts");
   products.forEach((product) => {
     let card = document.createElement("div");
-    card.style.marginTop= '80px';
+    card.style.marginTop = "80px";
     card.classList.add("productCard");
+
+    let imageWrapper = document.createElement("div");
+    imageWrapper.classList.add("imageWrapper");
+    imageWrapper.classList.add("face");
+
+    let infoWrapper = document.createElement("div");
+    infoWrapper.classList.add("infoWrapper");
+    infoWrapper.classList.add("face");
+
+    let content1 = document.createElement("div");
+    content1.classList.add("content");
+
+    let content2 = document.createElement("div");
+    content2.classList.add("content");
 
     let productImage = document.createElement("img");
     productImage.src = product.image;
 
     let model = document.createElement("h2");
     model.innerText = product.model;
-  
-    let productDescription = document.createElement("h3");
+
+    let productDescription = document.createElement("p");
     productDescription.innerText = product.description;
 
     let price = document.createElement("h5");
@@ -103,14 +116,12 @@ function renderProducts(products) {
       }
       localStorage.setItem("cart", JSON.stringify(currentCart));
     });
+    content1.append(productImage);
+    imageWrapper.appendChild(content1);
+    content2.append(model, productDescription, price, addToCartButton);
+    infoWrapper.append(content2);
 
-    card.append(
-      model,
-      productImage,
-      productDescription,
-      price,
-      addToCartButton
-    );
+    card.append(imageWrapper, infoWrapper);
     displayDiv.appendChild(card);
   });
 }
