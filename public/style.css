@@ -218,8 +218,8 @@ button#buyBtn,
 }
 
 #displayProducts .productCard .face {
-  width: 750px;
-  height: 450px;
+  width: 400px;
+  height: 250px;
   transition: 0.5s;
 }
 
@@ -230,7 +230,7 @@ button#buyBtn,
   justify-content: center;
   align-items: center;
   z-index: 1;
-  transform: translateY(350px);
+  transform: translateY(150px);
 }
 
 #displayProducts .productCard:hover .face.imageWrapper {
