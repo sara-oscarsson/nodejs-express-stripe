@@ -6,18 +6,19 @@ let loginBtn = document.getElementById("loginBtn");
 let buyButton = document.getElementById("buyBtn");
 buyButton.addEventListener("click", youAreNowBroke);
 
+// Checks if cookies are live in session
 async function checkLogin() {
   let response = await fetch("/checkUser", {
     headers: { "Content-Type": "application/json" },
-    method: "GET"
+    method: "GET",
   })
     .then((result) => {
       return result.json();
     })
     .then((answer) => {
-      if(!answer) {
+      if (!answer) {
         buyButton.disabled = true;
-        buyButton.innerText = "Login to buy"
+        buyButton.innerText = "Login to buy";
         buyButton.style.width = "200px";
       } else {
         loginBtn.style.display = "none";
@@ -26,12 +27,12 @@ async function checkLogin() {
     .catch((err) => console.error(err));
 }
 
-//Connect to stripe with publishable key??
+//Connect to stripe with publishable key
 let stripe = Stripe(
   "pk_test_51Jc8njIyEKoWmrdFxr80HrBTOYFNs9uo8qNCRz6slhLv5CY6zGH622D2i1CXVU5WtCzapgHCXI4v96i9t6iJdp7j00UgqRplu5"
 );
 
-
+// Gets what's in cart and renders it
 function showWhatsInCart() {
   let currentCart = localStorage.getItem("cart");
   currentCart = JSON.parse(currentCart);
@@ -79,6 +80,7 @@ function showWhatsInCart() {
   totalPriceCalculator();
 }
 
+// Calculates the total price
 function totalPriceCalculator() {
   let totalPriceDiv = document.getElementById("totalPrice");
   let totalPrice = 0;
@@ -93,6 +95,7 @@ function totalPriceCalculator() {
   totalPriceDiv.innerText = totalPrice + ":-";
 }
 
+// Sends ID to stripe and redirects to checkout
 async function youAreNowBroke() {
   let currentCart = localStorage.getItem("cart");
   let respone = await fetch("/payment", {

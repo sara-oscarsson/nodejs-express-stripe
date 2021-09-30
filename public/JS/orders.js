@@ -1,3 +1,4 @@
+// Retrieves orders connected to specific users
 window.addEventListener("load", async () => {
   let response = await fetch("/orders", {
     headers: { "Content-Type": "application/json" },
@@ -13,8 +14,8 @@ window.addEventListener("load", async () => {
         console.log(answer);
         let listedOrders = document.getElementById("listedOrders");
         answer.forEach((order) => {
-          const receipt = document.createElement('div');
-          receipt.classList.add('receipt');
+          const receipt = document.createElement("div");
+          receipt.classList.add("receipt");
 
           const orderDate = document.createElement("h2");
           orderDate.innerText = "Order date: " + order.orderdProducts.date;
@@ -22,8 +23,8 @@ window.addEventListener("load", async () => {
           const orderPrice = document.createElement("h4");
           orderPrice.innerText = "Total price: " + order.totalPrice;
 
-          const textHolder = document.createElement('div');
-          textHolder.classList.add('textHolder');
+          const textHolder = document.createElement("div");
+          textHolder.classList.add("textHolder");
 
           const orderID = document.createElement("p");
           orderID.innerText = "Order ID: " + order.orderId;
