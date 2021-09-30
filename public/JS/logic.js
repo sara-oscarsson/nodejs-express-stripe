@@ -5,6 +5,7 @@ window.addEventListener("load", () => {
 
 window.addEventListener("scroll", headerFunction);
 
+// Scroll function header
 function headerFunction() {
   let header = document.getElementById("header");
   let y = window.scrollY;
@@ -19,6 +20,7 @@ let loginBtn = document.getElementById("loginBtn");
 let logoutBtn = document.getElementById("logoutBtn");
 let orderPage = document.getElementById("orderPage");
 
+// Clears localstorage and ends cookie session
 logoutBtn.addEventListener("click", async () => {
   localStorage.removeItem("login");
   loginBtn.style.display = "block";
@@ -38,6 +40,7 @@ logoutBtn.addEventListener("click", async () => {
     .catch((err) => console.error(err));
 });
 
+// Checks if cookies are live in session
 async function checkLogin() {
   let response = await fetch("/checkUser", {
     headers: { "Content-Type": "application/json" },
@@ -59,6 +62,7 @@ async function checkLogin() {
     .catch((err) => console.error(err));
 }
 
+// Gets products from products.js and creates necessary classes to render them
 function renderProducts(products) {
   let displayDiv = document.getElementById("displayProducts");
   products.forEach((product) => {

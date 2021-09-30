@@ -214,7 +214,6 @@ button#buyBtn,
   object-fit: cover;
   transition: 0.7s;
   z-index: 1;
-
 }
 
 #displayProducts .productCard .face {
@@ -263,22 +262,60 @@ button#buyBtn,
 }
 
 #displayProducts .productCard .face.infoWrapper .content p {
-  margin: 0;
+  margin: 10px;
   padding: 0;
-  text-align: center;
   color: #414141;
 }
 
-#displayProducts .productCard .face.infoWrapper .content h3 {
+#displayProducts .productCard .face.infoWrapper .content h5 {
+  margin: 10px;
+  padding: 0;
+  text-align: left;
+  color: #414141;
+}
+
+#displayProducts .productCard .face.infoWrapper .content h2 {
   margin: 0 0 10px 0;
   padding: 0;
   color: #fff;
   font-size: 24px;
-  text-align: center;
   color: #414141;
+}
+
+#displayProducts .productCard .face.infoWrapper .content {
+  text-align: center;
 }
 
 #displayProducts a {
   text-decoration: none;
   color: #414141;
+}
+
+@media screen and (min-width: 2000px) {
+  #displayProducts .productCard .face {
+    width: 750px;
+    height: 550px;
+    transition: 0.5s;
+  }
+  #displayProducts .productCard .face.imageWrapper {
+    position: relative;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(450px);
+  }
+}
+
+@media screen and (max-width: 760px) {
+  header {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  header h1 {
+    font-size: 1em;
+  }
 }

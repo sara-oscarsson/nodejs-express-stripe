@@ -13,10 +13,11 @@ let products = [
     id: 2,
     price: 4000,
     model: "Renault Clio",
-    description:
-      "Literally the perfect car.",
+    description: "Literally the perfect car.",
     manufacturer: "Renault",
-    image: "https://biloffert.se/wp-content/uploads/2017/11/post_id_4419_ZZYcA-797x465.jpg"  },
+    image:
+      "https://biloffert.se/wp-content/uploads/2017/11/post_id_4419_ZZYcA-797x465.jpg",
+  },
   {
     id: 3,
     price: 12500,
