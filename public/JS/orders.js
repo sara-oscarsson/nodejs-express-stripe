@@ -21,7 +21,7 @@ window.addEventListener("load", async () => {
           orderDate.innerText = "Order date: " + order.orderdProducts.date;
 
           const orderPrice = document.createElement("h4");
-          orderPrice.innerText = "Total price: " + order.totalPrice;
+          orderPrice.innerText = "Total price: " + order.totalPrice / 100;
 
           const textHolder = document.createElement("div");
           textHolder.classList.add("textHolder");
