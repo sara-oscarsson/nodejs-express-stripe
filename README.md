@@ -6,3 +6,5 @@ With Stripe you're able to monitor your gross volume, payments and customers etc
 Node is needed and is easily installed through here => https://nodejs.org/en/download/
 Once in your IDE of preference you're prompted to open your terminal and type "npm install"
 Now in your terminal go ahead and type "npm start" to launch the webshop on http://localhost:3000
+
+Github: https://github.com/sara-oscarsson/nodejs-express-stripe
