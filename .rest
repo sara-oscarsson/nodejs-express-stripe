@@ -2,8 +2,8 @@ POST http://localhost:3000/createUser/
 Content-Type: application/json
 
 {
-    "name": "test",
-    "pwd": "okej"
+    "name": "123",
+    "pwd": "123"
 }
 
 ###
@@ -18,5 +18,33 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:3000/checkUser/
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:3000/logout/
+Content-Type: application/json
+
+###
+
 GET http://localhost:3000/orders/
 Content-Type: application/json
+
+###
+
+POST http://localhost:3000/payment/
+Content-Type: application/json
+
+[{   
+    "car": 
+    {
+        "id": 1, 
+        "price": 30000, 
+        "model": "Jesko",
+        "description": "Jesko – the all-new megacar from Koenigsegg – is powered by a newly designed, 1280hp (1600hp on E85 in some markets), twin-turbocharged V8 engine that benefits from significant changes to the Agera engine it replaces.",
+        "image": "https://www.koenigsegg.com/wp-content/uploads/2019/02/JESKO_perspective_front_72dpi-e1550924120385-1024x575.jpg",
+        "manufacturer": "Koenigsegg"
+    }, 
+    "quantity": 2
+}]
